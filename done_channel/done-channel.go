@@ -6,6 +6,11 @@ import (
 	"time"
 )
 
+// the parameter definition matters a lot here.
+// if `done` is passed without the `<-` symbol, it means the data can be
+// written into the `done` channel
+// however, most of the times, `done` channels are used as `readonly` values
+// hence, we need to pass the `<-` symbol to mark it as `readonly`
 func doWork(done <-chan bool) {
 	for {
 		select {
